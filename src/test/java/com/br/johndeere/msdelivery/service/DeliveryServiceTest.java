@@ -8,7 +8,6 @@ import com.br.johndeere.msdelivery.integration.response.CServicoResponse;
 import com.br.johndeere.msdelivery.integration.response.CorreiosResponse;
 import com.br.johndeere.msdelivery.integration.response.ServicosResponse;
 import com.br.johndeere.msdelivery.utils.XmlParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -41,7 +40,7 @@ public class DeliveryServiceTest {
     private String response;
 
     @Test
-    public void retrieveDeliveryDeadLineWithSuccess() throws Exception {
+    public void retrieveDeliveryDeadLineWithSuccess() {
         givenDeliveryDeadlineCorrectParams();
         whenCallCorreiosIntegrationSuccessfully();
         whenCallXmlMapperSuccessfully();
@@ -50,7 +49,7 @@ public class DeliveryServiceTest {
     }
 
     @Test(expected = UnprocessableEntityException.class)
-    public void bussinesException() throws Exception {
+    public void bussinesException() {
         givenDeliveryDeadlineCorrectParams();
         whenCallCorreiosIntegrationWithError();
         whenCallXmlMapperWithError();
@@ -126,7 +125,7 @@ public class DeliveryServiceTest {
         when(XmlParser.xmlUnmarshall(response, CorreiosResponse.class)).thenReturn(Optional.of(correiosResponse));
     }
 
-    private void whenCallXmlMapperSuccessfully() throws JsonProcessingException {
+    private void whenCallXmlMapperSuccessfully() {
         CServicoResponse cServicoResponse = CServicoResponse.builder()
                 .dataMaxEntrega("12/08/2020")
                 .build();
