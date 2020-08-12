@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "e055e25f-dd00-40e5-b6a7-c174a70f3f3e",
+		"name": "John Deere",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ms-delivery",
+			"item": [
+				{
+					"name": "actuator",
+					"item": [
+						{
+							"name": "/health",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{delivery-host}}{{delivery-base-path}}/actuator/health",
+									"host": [
+										"{{delivery-host}}{{delivery-base-path}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{delivery-host}}{{delivery-base-path}}/actuator/info",
+									"host": [
+										"{{delivery-host}}{{delivery-base-path}}"
+									],
+									"path": [
+										"actuator",
+										"info"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/deadline",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "pt",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{delivery-host}}{{delivery-base-path}}/deliveries/deadline?serviceCode=1234&fromZipCode=1234&toZipCode=1234",
+							"host": [
+								"{{delivery-host}}{{delivery-base-path}}"
+							],
+							"path": [
+								"deliveries",
+								"deadline"
+							],
+							"query": [
+								{
+									"key": "serviceCode",
+									"value": "1234"
+								},
+								{
+									"key": "fromZipCode",
+									"value": "1234"
+								},
+								{
+									"key": "toZipCode",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
