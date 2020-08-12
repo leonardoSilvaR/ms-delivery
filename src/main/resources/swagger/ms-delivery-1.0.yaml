@@ -1,0 +1,81 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "MS-Delivey"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/delivery/v1"
+tags:
+- name: "delivery"
+  description: "Everything about your Delivery"
+schemes:
+- "https"
+- "http"
+paths:
+  /deliveries/deadline:
+    get:
+      tags:
+      - "delivery"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "serviceCode"
+        in: "query"
+        required: true
+        type: integer
+      - name: "fromZipCde"
+        in: "query"
+        required: true
+        type: string
+      - name: "toZipCde"
+        in: "query"
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "OK."
+          schema:
+            $ref: "#/definitions/DeliveryDeadline"
+        "400":
+          description: "Invalid status value"
+          schema:
+            $ref: '#/definitions/BadRequestErrorMessage'          
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/BusinessErrorMessage'
+        "500":
+          description: Internal Server Error.
+definitions:
+  DeliveryDeadline:
+    type: "object"
+    properties:
+      deliveryDeadLine:
+        type: "string"
+        example: "2020-08-12"
+  BusinessErrorMessage:
+    type: object
+    properties:
+      code:
+        type: string
+        description: Error code.
+      message:
+        type: string
+        description: Error message.
+      detail:
+        type: string
+        description: Error message.
+  BadRequestErrorMessage:
+    type: object
+    properties:
+      code:
+        type: string
+        description: Error code.
+      message:
+        type: string
+        description: Error message.
